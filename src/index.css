@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@300;400;500;600&family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: #ffffff;
+  color-scheme: light dark;
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+@layer base {
+  :root {
+    /* Font Family */
+    --font-sans: 'IBM Plex Sans Thai';
+    --font-serif: 'Noto Serif Thai';
+    --font-looped: 'IBM Plex Sans Thai Looped';
+
+    /* Font Size */
+    --font-size-h1: 2.5rem;
+    --font-size-h2: 2rem;
+    --font-size-h3: 1.5rem;
+    --font-size-h4: 1.25rem;
+    --font-size-h5: 1rem;
+    --font-size-h6: 0.875rem;
+    --font-size-tiny: 0.75rem;
+    --font-size-body1: 1rem;
+    --font-size-body2: 0.875rem;
+    --font-size-body3: 0.75rem;
+
+    /* Line Height */
+    --line-height-h1: 3.5rem;
+    --line-height-h2: 2.75rem;
+    --line-height-h3: 2rem;
+    --line-height-h4: 1.65rem;
+    --line-height-h5: 1.5rem;
+    --line-height-h6: 1.25rem;
+    --line-height-tiny: 1.125rem;
+    --line-height-body1: 1.5rem;
+    --line-height-body2: 1.25rem;
+    --line-height-body3: 1.125rem;
+
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer base {
+  .h1 {
+    @apply text-h1 font-sans;
+  }
+
+  .h2 {
+    @apply text-h2 font-sans;
+  }
+
+  .h3 {
+    @apply text-h3 font-sans;
+  }
+
+  .h4 {
+    @apply text-h4 font-sans;
+  }
+
+  .h5 {
+    @apply text-h5 font-sans;
+  }
+
+  .h6 {
+    @apply text-h6 font-sans;
+  }
+
+  .tiny {
+    @apply text-tiny font-sans;
+  }
+
+  .body1 {
+    @apply text-body1 font-looped;
+  }
+
+  .body2 {
+    @apply text-body2 font-looped;
+  }
+
+  .body3 {
+    @apply text-body3 font-looped;
+  }
+}
