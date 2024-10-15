@@ -8,11 +8,11 @@ import './index.css';
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <QueryClientProvider client={queryClient}>
-    <BrowserRouter>
+  <BrowserRouter>
+    <QueryClientProvider client={queryClient}>
       <React.StrictMode>
         <App />
       </React.StrictMode>
-    </BrowserRouter>
-  </QueryClientProvider>,
+    </QueryClientProvider>
+  </BrowserRouter>,
 );
