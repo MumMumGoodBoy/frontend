@@ -19,8 +19,16 @@ interface ContainerProps extends React.HTMLAttributes<HTMLDivElement>, VariantPr
   variant?: 'constrained' | 'padded-content';
 }
 
-const Container = React.forwardRef<HTMLDivElement, ContainerProps>(({ className, variant, ...props }, ref) => (
-  <div className={cn(containerStyles({ variant, className }))} {...props} ref={ref} />
+const Container = React.forwardRef<HTMLDivElement, ContainerProps>(({ className, variant, style, ...props }, ref) => (
+  <div
+    className={cn(containerStyles({ variant, className }))}
+    style={{
+      backgroundImage: `radial-gradient(at 150% 11%, hsla(166,69%,67%,1) 0px, transparent 50%),radial-gradient(at 100% 120%, hsla(89,66%,79%,1) 0px, transparent 50%)`,
+      ...style,
+    }}
+    {...props}
+    ref={ref}
+  />
 ));
 
 Container.displayName = 'Container';

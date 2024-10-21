@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom';
 import { z } from 'zod';
 
 const formSchema = z.object({
-  email: z.string().email({
-    message: 'Invalid email address.',
+  userName: z.string({
+    message: 'Invalid username',
   }),
   password: z.string().min(8, {
     message: 'Password must be at least 8 characters',
@@ -20,19 +20,19 @@ const Login = () => {
   const { register, handleSubmit } = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: '',
+      userName: '',
       password: '',
     },
   });
 
   return (
-    <Container className="bg-pink-100 mx-0">
-      <div className="flex flex-col gap-4 items-center justify-center w-1/4 max-md:w-full">
+    <Container className="mx-0">
+      <div className="flex flex-col gap-4 items-center justify-center w-full max-w-[500px]">
         <Typography variant="h2" fontWeight="bold">
           Login
         </Typography>
         <form onSubmit={handleSubmit(() => {})} className="flex flex-col gap-2 w-full">
-          <Input {...register('email')} placeholder="Your email" label="Email" />
+          <Input {...register('userName')} placeholder="Your username" label="Username" />
           <Input {...register('password')} placeholder="Your password" type="password" label="Password" />
           <Button type="submit">
             <Typography variant="body1">Login</Typography>
