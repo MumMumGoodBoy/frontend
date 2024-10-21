@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 import Footer from './components/footer';
 import Title from './components/title';
 
-const food1 = new URL('./public/food1.svg', import.meta.url).href;
-const food3 = new URL('./public/food3.svg', import.meta.url).href;
-const food4 = new URL('./public/food4.svg', import.meta.url).href;
-const food5 = new URL('./public/food5.svg', import.meta.url).href;
+import FoodOne from '@/assets/food1.svg';
+import FoodFour from '@/assets/food2.svg';
+import FoodTwo from '@/assets/food3.svg';
+import FoodThree from '@/assets/food4.svg';
 
 const Landing = () => {
   return (
@@ -32,17 +32,17 @@ const Landing = () => {
       <Pill className="right-24 top-20 -translate-y-1/2 -rotate-6">Discover Restaurants</Pill>
       <Pill className="bottom-12 left-24 -rotate-6">Random Dishes !!</Pill>
       <Pill className="bottom-32 left-12 aspect-square -translate-y-full translate-x-full">
-        <img src={food1} alt="food1" className="w-20 h-20 object-contain" />
+        <FoodOne />
       </Pill>
       <Pill className="bottom-48 right-12 -translate-y-1/2">Favorite Foods !!</Pill>
       <Pill className="bottom-20 right-36 aspect-square translate-x-1/2 translate-y-1/2 p-1">
-        <img src={food3} alt="food3" className="w-full h-full object-none" />
+        <FoodTwo />
       </Pill>
       <Pill className="right-12 top-32 aspect-square translate-y-full p-1">
-        <img src={food4} alt="food4" className="w-full h-full object-contain" />
+        <FoodThree />
       </Pill>
       <Pill className="left-12 top-32 aspect-square translate-y-full p-2">
-        <img src={food5} alt="food5" className="w-full h-full object-contain" />
+        <FoodFour />
       </Pill>
     </Container>
   );
