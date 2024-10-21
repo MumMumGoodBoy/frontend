@@ -5,10 +5,11 @@ import Typography from '@/components/ui/typography';
 import { Link } from 'react-router-dom';
 import Footer from './components/footer';
 import Title from './components/title';
-import food1 from './public/food1.svg';
-import food3 from './public/food3.svg';
-import food4 from './public/food4.svg';
-import food5 from './public/food5.svg';
+
+const food1 = new URL('./public/food1.svg', import.meta.url).href;
+const food3 = new URL('./public/food3.svg', import.meta.url).href;
+const food4 = new URL('./public/food4.svg', import.meta.url).href;
+const food5 = new URL('./public/food5.svg', import.meta.url).href;
 
 const Landing = () => {
   return (
