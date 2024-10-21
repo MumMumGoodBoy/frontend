@@ -5,6 +5,10 @@ import Typography from '@/components/ui/typography';
 import { Link } from 'react-router-dom';
 import Footer from './components/footer';
 import Title from './components/title';
+import food1 from './public/food1.svg';
+import food3 from './public/food3.svg';
+import food4 from './public/food4.svg';
+import food5 from './public/food5.svg';
 
 const Landing = () => {
   return (
@@ -27,17 +31,17 @@ const Landing = () => {
       <Pill className="right-24 top-20 -translate-y-1/2 -rotate-6">Discover Restaurants</Pill>
       <Pill className="bottom-12 left-24 -rotate-6">Random Dishes !!</Pill>
       <Pill className="bottom-32 left-12 aspect-square -translate-y-full translate-x-full">
-        <img src="/public/food1.svg" alt="food1" className="w-20 h-20 object-contain" />
+        <img src={food1} alt="food1" className="w-20 h-20 object-contain" />
       </Pill>
       <Pill className="bottom-48 right-12 -translate-y-1/2">Favorite Foods !!</Pill>
       <Pill className="bottom-20 right-36 aspect-square translate-x-1/2 translate-y-1/2 p-1">
-        <img src="/public/food3.svg" alt="food3" className="w-full h-full object-none" />
+        <img src={food3} alt="food3" className="w-full h-full object-none" />
       </Pill>
       <Pill className="right-12 top-32 aspect-square translate-y-full p-1">
-        <img src="/public/food4.svg" alt="food4" className="w-full h-full object-contain" />
+        <img src={food4} alt="food4" className="w-full h-full object-contain" />
       </Pill>
       <Pill className="left-12 top-32 aspect-square translate-y-full p-2">
-        <img src="/public/food5.svg" alt="food5" className="w-full h-full object-contain" />
+        <img src={food5} alt="food5" className="w-full h-full object-contain" />
       </Pill>
     </Container>
   );
