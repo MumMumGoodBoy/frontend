@@ -1,10 +1,4 @@
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
@@ -19,7 +13,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { Beef, ChevronUp, Dice5, Home, Sparkles, User2, Utensils } from 'lucide-react';
+import { Beef, Dice5, DoorOpen, Home, Sparkles, User2, Utensils } from 'lucide-react';
 import Typography from './ui/typography';
 const items = [
   {
@@ -49,28 +43,56 @@ const items = [
   },
 ];
 
+const profileItems = [
+  {
+    title: 'My Account',
+    url: '/account',
+    icon: User2,
+  },
+  {
+    title: 'My Favourite',
+    url: '/favourite',
+    icon: Sparkles,
+  },
+];
+
 export function AppSidebar() {
   const { isMobile } = useSidebar();
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup className="space-y-3">
-          {isMobile ? (
-            <SidebarGroupLabel>Menu</SidebarGroupLabel>
-          ) : (
+          {!isMobile && (
             <>
               <Typography variant="h3" fontWeight="bold" className="flex items-center justify-center pt-3">
                 WongChula
               </Typography>
+
               <SidebarSeparator />
             </>
           )}
-
+          <SidebarGroupLabel>Menu</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild isActive={location.pathname === item.url}>
+                  <SidebarMenuButton asChild isActive={location.pathname.startsWith(item.url)}>
+                    <a href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+          <SidebarGroupLabel>Profile</SidebarGroupLabel>
+
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {profileItems.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild isActive={location.pathname.startsWith(item.url)}>
                     <a href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
@@ -85,25 +107,12 @@ export function AppSidebar() {
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton>
-                  <User2 /> Oak
-                  <ChevronUp className="ml-auto" />
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent side="top" className="w-[--radix-popper-anchor-width]">
-                <DropdownMenuItem>
-                  <span>My Account</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>My Favourite</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Sign out</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <SidebarMenuButton asChild>
+              <a href="/">
+                <DoorOpen />
+                <span>Sign out</span>
+              </a>
+            </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
