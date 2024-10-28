@@ -1,26 +1,29 @@
-import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
+import { Pill } from '@/components/ui/pill';
 import Typography from '@/components/ui/typography';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
-    <Container>
-      <div className="flex flex-col gap-6 items-center justify-center">
-        <div className="flex flex-col gap-0.5 text-center">
-          <Typography variant="h1" fontWeight="bold" className="mx-auto">
-            WongChula 🥐
-          </Typography>
-          <Typography variant="body1" className="text-slate-600">
-            Find the best places to eat, drink, and relax in Chula.
-          </Typography>
-        </div>
-        <Link to="/login">
-          <Button className="w-fit">
-            <Typography variant="body1">Get Started</Typography>
-          </Button>
-        </Link>
-      </div>
+    <Container className="flex flex-col p-2 gap-4 text-center">
+      <Typography variant="h3" fontWeight="bold" className="text-slate-800">
+        Welcome to WongChula!
+      </Typography>
+      <Typography variant="h4" className="text-slate-600">
+        Explore the best places to eat, drink, and relax in Chula.
+      </Typography>
+      <Link to="/food">
+        <Pill className="left-72 top-20 hover:underline cursor-pointer">Discover foods</Pill>
+      </Link>
+      <Link to="/restaurant">
+        <Pill className="right-36 top-20 hover:underline cursor-pointer">Discover Restaurants</Pill>
+      </Link>
+      <Link to="/suggest">
+        <Pill className="left-96 bottom-24 hover:underline cursor-pointer">Get suggest</Pill>
+      </Link>
+      <Pill className="right-96 bottom-40">🍔</Pill>
+      <Pill className="left-[600px] bottom-52">🥐</Pill>
+      <Pill className="left-[600px] top-52">🥗</Pill>
     </Container>
   );
 };

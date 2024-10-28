@@ -4,6 +4,8 @@ import Landing from '@/pages/landing';
 import Login from '@/pages/login';
 import Register from '@/pages/register';
 import { Outlet, Route, Routes } from 'react-router-dom';
+import { AppSidebar, Navbar } from './components/menu';
+import { SidebarProvider } from './components/ui/sidebar';
 
 function App() {
   return (
@@ -13,9 +15,13 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route
         element={
-          <main>
-            <Outlet />
-          </main>
+          <SidebarProvider>
+            <AppSidebar />
+            <div className="flex flex-col w-full">
+              <Navbar />
+              <Outlet />
+            </div>
+          </SidebarProvider>
         }
       >
         <Route path="/home" element={<Home />} />
