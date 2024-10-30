@@ -6,11 +6,6 @@ import { Link } from 'react-router-dom';
 import Footer from './components/footer';
 import Title from './components/title';
 
-import FoodOne from '@/assets/food1.svg';
-import FoodFour from '@/assets/food2.svg';
-import FoodTwo from '@/assets/food3.svg';
-import FoodThree from '@/assets/food4.svg';
-
 const Landing = () => {
   return (
     <Container>
@@ -32,17 +27,17 @@ const Landing = () => {
       <Pill className="right-24 top-20 -translate-y-1/2 -rotate-6">Discover Restaurants</Pill>
       <Pill className="bottom-12 left-24 -rotate-6">Random Dishes !!</Pill>
       <Pill className="bottom-32 left-12 aspect-square -translate-y-full translate-x-full">
-        <FoodOne />
+        <img src="/src/assets/food1.svg" alt="food1" />
       </Pill>
       <Pill className="bottom-48 right-12 -translate-y-1/2">Favorite Foods !!</Pill>
       <Pill className="bottom-20 right-36 aspect-square translate-x-1/2 translate-y-1/2 p-1">
-        <FoodTwo />
+        <img src="/src/assets/food2.svg" alt="food2" />
       </Pill>
       <Pill className="right-12 top-32 aspect-square translate-y-full p-1">
-        <FoodThree />
+        <img src="/src/assets/food3.svg" alt="food3" />
       </Pill>
       <Pill className="left-12 top-32 aspect-square translate-y-full p-2">
-        <FoodFour />
+        <img src="/src/assets/food4.svg" alt="food4" />
       </Pill>
     </Container>
   );
