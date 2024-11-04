@@ -108,7 +108,12 @@ export function AppSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <a href="/">
+              <a
+                href="/"
+                onClick={() => {
+                  localStorage.removeItem('token');
+                }}
+              >
                 <DoorOpen />
                 <span>Sign out</span>
               </a>

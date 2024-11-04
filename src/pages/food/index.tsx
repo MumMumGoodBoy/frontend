@@ -1,42 +1,62 @@
+import { getFoodByFoodId } from '@/api/food-restaurant';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
-import { Input } from '@/components/ui/input';
 import Typography from '@/components/ui/typography';
-import FoodCard from './components/card';
-import FilterTap from './components/filter-tap';
+import { useQuery } from '@tanstack/react-query';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
-const Foods = () => {
+const Food = () => {
   const isAdmin = true;
+  const foodId = useParams<{ id: string }>().id;
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['food', foodId],
+    queryFn: () => getFoodByFoodId(foodId!),
+  });
+
+  const navigate = useNavigate();
+
+  if (isLoading) {
+    return <Typography>Loading...</Typography>;
+  }
+
   return (
     <Container className="py-10 w-full">
       <div className="flex flex-col gap-4 w-full">
-        <div className="flex justify-between">
-          <Typography variant="h2" fontWeight="bold">
-            Foods
-          </Typography>
-          {isAdmin && <Button variant="outline">Create food</Button>}
+        <Button variant="outline" className="w-fit" onClick={() => navigate(-1)}>
+          Back
+        </Button>
+
+        <Typography variant="h2" fontWeight="bold">
+          Food Detail
+        </Typography>
+        <div className="flex justify-between border shadow-md p-4 rounded-md items-center bg-white">
+          <div className="flex gap-5">
+            <img src={data?.image_url} alt="food" className="w-[150px] h-[150px]" />
+            <div className="flex flex-col gap-2 ">
+              <Typography variant="body1" fontWeight="bold">
+                {data?.name}
+              </Typography>
+              <Typography variant="body1">{data?.description}</Typography>
+              <Typography variant="body1">ราคา {data?.price} บาท</Typography>
+              <Link to={`/restaurant/${data?.restaurant_id}`}>
+                <Button variant="link">See Restaurant</Button>
+              </Link>
+            </div>
+          </div>
+          {isAdmin && (
+            <div className="flex flex-col gap-2">
+              {/* <EditProfile />
+              <ChangePassword /> */}
+            </div>
+          )}
         </div>
-        <Input placeholder="Search food" className="w-full" />
-        <div className="space-y-2">
-          <Typography variant="h5" fontWeight="bold">
-            Filter price
-          </Typography>
-          <FilterTap />
-        </div>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-        </div>
+        <Typography variant="h2" fontWeight="bold">
+          Review
+        </Typography>
       </div>
     </Container>
   );
 };
 
-export default Foods;
+export default Food;

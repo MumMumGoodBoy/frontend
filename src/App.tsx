@@ -7,11 +7,13 @@ import { Outlet, Route, Routes } from 'react-router-dom';
 import { AppSidebar, Navbar } from './components/menu';
 import { SidebarProvider } from './components/ui/sidebar';
 import Favourite from './pages/favourite';
-import Foods from './pages/food';
+import Food from './pages/food';
+import Foods from './pages/foods';
 import Profile from './pages/profile';
 import Random from './pages/random';
-import Restaurants from './pages/restaurant';
+import Restaurants from './pages/restaurants';
 import Suggest from './pages/suggest';
+
 function App() {
   return (
     <Routes>
@@ -30,12 +32,10 @@ function App() {
         }
       >
         <Route path="/home" element={<Home />} />
-        <Route path="/food" element={<Foods />}>
-          <Route path=":id" element={<Home />} />
-        </Route>
-        <Route path="/restaurant" element={<Restaurants />}>
-          <Route path=":id" element={<Home />} />
-        </Route>
+        <Route path="/food" element={<Foods />} />
+        <Route path="/food/:id" element={<Food />} />
+        <Route path="/restaurant" element={<Restaurants />} />
+        <Route path="/restaurant/:id" element={<Home />} />
         <Route path="/suggest" element={<Suggest />} />
         <Route path="/random" element={<Random />} />
         <Route path="/account" element={<Profile />} />
