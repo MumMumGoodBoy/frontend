@@ -28,9 +28,9 @@ const Landing = () => {
       <Pill className="bottom-12 left-24 -rotate-6">Random Dishes !!</Pill>
       <Pill className="bottom-32 left-12 aspect-square -translate-y-full translate-x-full">🍎</Pill>
       <Pill className="bottom-48 right-12 -translate-y-1/2">Favorite Foods !!</Pill>
-      <Pill className="bottom-20 right-36 aspect-square translate-x-1/2 translate-y-1/2 p-1">🍔</Pill>
-      <Pill className="right-12 top-32 aspect-square translate-y-full p-1">🥐</Pill>
-      <Pill className="left-12 top-32 aspect-square translate-y-full p-2">🥗</Pill>
+      <Pill className="bottom-20 right-36 aspect-square translate-x-1/2 translate-y-1/2">🍔</Pill>
+      <Pill className="right-12 top-32 aspect-square translate-y-full">🥐</Pill>
+      <Pill className="left-12 top-32 aspect-square translate-y-full">🥗</Pill>
     </Container>
   );
 };
