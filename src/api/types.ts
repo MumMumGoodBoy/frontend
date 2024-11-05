@@ -70,3 +70,23 @@ export interface GetFoodResponse {
   restaurant_id: string;
   image_url: string;
 }
+
+export interface GetRestaurantResponse {
+  id: string;
+  name: string;
+  address: string;
+  phone: string;
+}
+
+export interface GetFoodsByRestaurantResponse {
+  foods: Food[];
+}
+
+export interface GetReviewsByFoodIdResponse {
+  review_id: string;
+  restaurant_id: string;
+  food_id: string;
+  user_id: number;
+  content: string;
+  rating: number;
+}

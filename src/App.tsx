@@ -11,6 +11,7 @@ import Food from './pages/food';
 import Foods from './pages/foods';
 import Profile from './pages/profile';
 import Random from './pages/random';
+import Restaurant from './pages/restaurant';
 import Restaurants from './pages/restaurants';
 import Suggest from './pages/suggest';
 
@@ -20,6 +21,7 @@ function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+
       <Route
         element={
           <SidebarProvider>
@@ -35,7 +37,7 @@ function App() {
         <Route path="/food" element={<Foods />} />
         <Route path="/food/:id" element={<Food />} />
         <Route path="/restaurant" element={<Restaurants />} />
-        <Route path="/restaurant/:id" element={<Home />} />
+        <Route path="/restaurant/:id" element={<Restaurant />} />
         <Route path="/suggest" element={<Suggest />} />
         <Route path="/random" element={<Random />} />
         <Route path="/account" element={<Profile />} />

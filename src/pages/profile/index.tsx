@@ -5,7 +5,11 @@ import { ChangePassword } from './components/change-password';
 import { EditProfile } from './components/edit-profile';
 
 const Profile = () => {
-  const { user } = useUser();
+  const { user, isLoading } = useUser();
+
+  if (isLoading) {
+    return <Typography>Loading...</Typography>;
+  }
   return (
     <Container className="py-10 w-full">
       <div className="flex flex-col gap-4 w-full">

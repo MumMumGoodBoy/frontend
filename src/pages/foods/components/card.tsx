@@ -1,10 +1,10 @@
-import { Food } from '@/api/types';
+import { Food, GetFoodResponse } from '@/api/types';
 import { Button } from '@/components/ui/button';
 import Typography from '@/components/ui/typography';
 import { Link } from 'react-router-dom';
 
 interface FoodCardProps {
-  food: Food;
+  food: Food | GetFoodResponse;
 }
 
 export default function FoodCard({ food }: FoodCardProps) {
