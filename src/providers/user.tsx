@@ -26,29 +26,13 @@ export function UserProvider(props: UserProviderProps) {
     enabled: Boolean(localStorage.getItem('token')),
   });
 
-  // const navigate = useNavigate();
-
-  const [isAdmin] = useState(false);
-
-  // useEffect(() => {
-  //   if (!isLoading && !isError && data) {
-  //     setIsAdmin(true);
-  //   }
-  // }, [data, isError, isLoading]);
-
-  // useEffect(() => {
-  //   if (!isLoading && !data) {
-  //     return navigate('/login');
-  //   }
-  // }, [data, isLoading, navigate]);
-
   const value = useMemo(
     () => ({
       user: data,
-      isAdmin,
+      isAdmin: data?.isAdmin || false,
       isLoading,
     }),
-    [data, isAdmin, isLoading],
+    [data, isLoading],
   );
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

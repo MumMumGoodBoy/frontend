@@ -1,13 +1,15 @@
 import { Restaurant } from '@/api/types';
 import { Button } from '@/components/ui/button';
 import Typography from '@/components/ui/typography';
+import { useUser } from '@/providers/user';
 import { Link } from 'react-router-dom';
 
 interface ResrtaurantCardProps {
   restaurant: Restaurant;
 }
 export default function ResrtaurantCard({ restaurant }: ResrtaurantCardProps) {
-  const isAdmin = true;
+  const user = useUser();
+  const isAdmin = user.isAdmin;
   return (
     <div className="flex flex-col items-center justify-center p-6 max-lg:flex-col gap-4 border rounded-md shadow-sm bg-white">
       <div className="flex justify-between w-full items-center">

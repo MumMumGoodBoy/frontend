@@ -8,9 +8,11 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import { GetReviewsByFoodId } from '@/api/review';
 import { ReviewCard } from './components/review-card';
+import { useUser } from '@/providers/user';
 
 const Food = () => {
-  const isAdmin = true;
+  const user = useUser();
+  const isAdmin = user.isAdmin;
   const foodId = useParams<{ id: string }>().id;
 
   const { data, isLoading } = useQuery({

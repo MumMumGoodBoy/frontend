@@ -7,9 +7,11 @@ import InputDebounce from '@/components/input-debounce';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import RestaurantCard from './components/restaurant-card';
+import { useUser } from '@/providers/user';
 
 const Restaurants = () => {
-  const isAdmin = true;
+  const user = useUser();
+  const isAdmin = user.isAdmin;
 
   const [search, setSearch] = useState<string>('');
 

@@ -30,6 +30,7 @@ export interface User {
   userName: string;
   firstName: string;
   lastName: string;
+  isAdmin: boolean;
 }
 
 export interface Food {

@@ -7,6 +7,7 @@ import { EditFoodButton } from './edit-food-modal';
 import ReactStars from 'react-stars';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addFoodToFavorites, removeFoodFromFavorites } from '@/api/review';
+import { useUser } from '@/providers/user';
 
 interface FoodCardProps {
   food: Food;
@@ -15,7 +16,8 @@ interface FoodCardProps {
 }
 
 export default function FoodCard({ food, restaurantId, isFavorite }: FoodCardProps) {
-  const isAdmin = true;
+  const user = useUser();
+  const isAdmin = user.isAdmin;
 
   const queryClient = useQueryClient();
   const { mutate: addToFavorites } = useMutation({

@@ -8,9 +8,11 @@ import FoodCard from '../foods/components/card';
 import { CreateFoodButton } from '../foods/components/create-food-modal';
 import { getMyFavorites } from '@/api/review';
 import { useMemo } from 'react';
+import { useUser } from '@/providers/user';
 
 const Restaurant = () => {
-  const isAdmin = true;
+  const user = useUser();
+  const isAdmin = user.isAdmin;
   const restaurantId = useParams<{ id: string }>().id;
 
   const { data: restaurant, isLoading: isLoadingRestaurant } = useQuery({
@@ -78,12 +80,6 @@ const Restaurant = () => {
               <Typography variant="body1">โทร {restaurant?.phone}</Typography>
             </div>
           </div>
-          {isAdmin && (
-            <div className="flex flex-col gap-2">
-              {/* <EditProfile />
-              <ChangePassword /> */}
-            </div>
-          )}
         </div>
 
         <div className="flex flex-col gap-4">
@@ -91,7 +87,8 @@ const Restaurant = () => {
             <Typography variant="h3" fontWeight="bold">
               Our Foods
             </Typography>
-            <CreateFoodButton restaurantId={restaurantId || ''} />
+
+            {isAdmin && <CreateFoodButton restaurantId={restaurantId || ''} />}
           </div>
           {isLoadingFood && <Typography>Loading...</Typography>}
 
