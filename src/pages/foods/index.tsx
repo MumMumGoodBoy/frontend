@@ -24,7 +24,6 @@ const Foods = () => {
           <Typography variant="h2" fontWeight="bold">
             Foods
           </Typography>
-          {isAdmin && <CreateFoodButton />}
         </div>
         <InputDebounce
           placeholder="Search food"

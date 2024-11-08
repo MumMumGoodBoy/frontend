@@ -18,7 +18,11 @@ const formSchema = z.object({
   restaurant_id: z.string().min(1, 'Restaurant id is required'),
 });
 
-export function CreateFoodButton() {
+interface CreateFoodButtonProps {
+  restaurantId: string;
+}
+
+export function CreateFoodButton({ restaurantId }: CreateFoodButtonProps) {
   const [open, setOpen] = useState(false);
 
   const {
@@ -33,7 +37,7 @@ export function CreateFoodButton() {
       description: '',
       price: 0,
       image_url: '',
-      restaurant_id: '',
+      restaurant_id: restaurantId,
     },
   });
 
@@ -43,7 +47,7 @@ export function CreateFoodButton() {
       description: '',
       price: 0,
       image_url: '',
-      restaurant_id: '',
+      restaurant_id: restaurantId,
     });
   }, [reset, open]);
 
@@ -52,12 +56,15 @@ export function CreateFoodButton() {
   const { mutate } = useMutation({
     mutationKey: ['createFood'],
     mutationFn: createFood,
-    onSuccess: () => {
+    onSuccess: async () => {
       toast({
         title: 'Create food success',
       });
       setOpen(false);
-      queryClient.invalidateQueries({ queryKey: ['foods'] });
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ['restaurant', restaurantId] }),
+        queryClient.invalidateQueries({ queryKey: ['food', restaurantId] }),
+      ]);
     },
     onError: () => {
       toast({
@@ -105,12 +112,6 @@ export function CreateFoodButton() {
               {errors.image_url && (
                 <Typography variant="tiny" className="text-destructive">
                   {errors.image_url.message}
-                </Typography>
-              )}
-              <Input label="Restaurant id" {...register('restaurant_id')} />
-              {errors.restaurant_id && (
-                <Typography variant="tiny" className="text-destructive">
-                  {errors.restaurant_id.message}
                 </Typography>
               )}
             </div>

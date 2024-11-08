@@ -5,6 +5,7 @@ import Typography from '@/components/ui/typography';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import FoodCard from '../foods/components/card';
+import { CreateFoodButton } from '../foods/components/create-food-modal';
 
 const Restaurant = () => {
   const isAdmin = true;
@@ -61,10 +62,12 @@ const Restaurant = () => {
         </div>
 
         <div className="flex flex-col gap-4">
-          <Typography variant="h3" fontWeight="bold">
-            Our Foods
-          </Typography>
-
+          <div className="flex flex-row justify-between">
+            <Typography variant="h3" fontWeight="bold">
+              Our Foods
+            </Typography>
+            <CreateFoodButton restaurantId={restaurantId || ''} />
+          </div>
           {isLoadingFood && <Typography>Loading...</Typography>}
 
           {foods?.foods.length !== 0 ? (
