@@ -34,14 +34,24 @@ const Restaurants = () => {
             setSearch(val as string);
           }}
         />
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {isLoading && <Typography>Loading...</Typography>}
-          {data?.hits.length === 0 ? (
-            <Typography>No restaurant found</Typography>
-          ) : (
-            data?.hits.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant} />)
-          )}
-        </div>
+        {isLoading && (
+          <div className="flex items-center justify-center h-full w-full">
+            <Typography variant="h1" className="text-slate-600">
+              Loading... 🥗🥐
+            </Typography>
+          </div>
+        )}
+        {data?.hits.length === 0 ? (
+          <div className="flex items-center justify-center h-full w-full">
+            <Typography variant="h1" className="text-slate-600">
+              No Restaurants Found 🥗🥐
+            </Typography>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {data?.hits.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant} />)}
+          </div>
+        )}
       </div>
     </Container>
   );

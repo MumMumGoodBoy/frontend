@@ -6,6 +6,8 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import FoodCard from '../foods/components/card';
 import { CreateFoodButton } from '../foods/components/create-food-modal';
+import { getMyFavorites } from '@/api/review';
+import { useMemo } from 'react';
 
 const Restaurant = () => {
   const isAdmin = true;
@@ -26,11 +28,34 @@ const Restaurant = () => {
   //   const handleRating = (rate: number) => {
   //     setRating(rate);
   //   };
+  const { data: myFavoritesData } = useQuery({
+    queryKey: ['favorites'],
+    queryFn: () => getMyFavorites(),
+  });
 
+  const myFavorites = myFavoritesData?.foods || [];
+
+  const combinedFoods = useMemo(() => {
+    if (!foods) {
+      return [];
+    }
+
+    const favoritesIds = new Set(myFavorites.map((fav) => fav.id));
+    const nonFavorites = foods.foods.filter((food) => !favoritesIds.has(food.id));
+    const favorites = foods.foods.filter((food) => favoritesIds.has(food.id));
+
+    return [...favorites, ...nonFavorites];
+  }, [foods, myFavorites]);
   const navigate = useNavigate();
 
   if (isLoadingRestaurant || isLoadingFood) {
-    return <Typography>Loading...</Typography>;
+    return (
+      <div className="flex items-center justify-center h-full w-full">
+        <Typography variant="h1" className="text-slate-600">
+          Loading... 🥗🥐
+        </Typography>
+      </div>
+    );
   }
 
   return (
@@ -70,12 +95,23 @@ const Restaurant = () => {
           </div>
           {isLoadingFood && <Typography>Loading...</Typography>}
 
-          {foods?.foods.length !== 0 ? (
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {foods?.foods.map((food) => <FoodCard key={food.id} food={food} resutaurantId={restaurantId || ''} />)}
+          {combinedFoods.length ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {combinedFoods.map((food) => (
+                <FoodCard
+                  key={food.id}
+                  food={food}
+                  restaurantId={restaurantId || ''}
+                  isFavorite={myFavorites.some((fav) => fav.id === food.id)}
+                />
+              ))}
             </div>
           ) : (
-            <Typography className="w-full text-center">No food found</Typography>
+            <div className="flex items-center justify-center h-full w-full">
+              <Typography variant="h1" className="text-slate-600">
+                No Foods Found 🥗🥐
+              </Typography>{' '}
+            </div>
           )}
         </div>
       </div>

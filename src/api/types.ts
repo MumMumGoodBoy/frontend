@@ -92,6 +92,10 @@ export interface GetReviewsByFoodIdResponse {
   rating: number;
 }
 
+export interface GetMyFavoritesResponse {
+  foods: Food[];
+}
+
 export interface CreateFoodRequest {
   name: string;
   description: string;

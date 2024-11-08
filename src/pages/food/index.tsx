@@ -32,7 +32,13 @@ const Food = () => {
   const navigate = useNavigate();
 
   if (isLoading || isLoadingReview) {
-    return <Typography>Loading...</Typography>;
+    return (
+      <div className="flex items-center justify-center h-full w-full">
+        <Typography variant="h1" className="text-slate-600">
+          Loading... 🥗🥐
+        </Typography>
+      </div>
+    );
   }
 
   return (

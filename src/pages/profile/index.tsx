@@ -8,7 +8,13 @@ const Profile = () => {
   const { user, isLoading } = useUser();
 
   if (isLoading) {
-    return <Typography>Loading...</Typography>;
+    return (
+      <div className="flex items-center justify-center h-full w-full">
+        <Typography variant="h1" className="text-slate-600">
+          Loading... 🥗🥐
+        </Typography>
+      </div>
+    );
   }
   return (
     <Container className="py-10 w-full">
