@@ -1,11 +1,11 @@
 import { searchFood } from '@/api/search';
 import InputDebounce from '@/components/input-debounce';
-import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import Typography from '@/components/ui/typography';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import FoodCard from './components/card';
+import { CreateFoodButton } from './components/create-food-modal';
 
 const Foods = () => {
   const isAdmin = true;
@@ -24,7 +24,7 @@ const Foods = () => {
           <Typography variant="h2" fontWeight="bold">
             Foods
           </Typography>
-          {isAdmin && <Button variant="outline">Create food</Button>}
+          {isAdmin && <CreateFoodButton />}
         </div>
         <InputDebounce
           placeholder="Search food"

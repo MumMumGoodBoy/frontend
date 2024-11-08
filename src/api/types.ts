@@ -90,3 +90,19 @@ export interface GetReviewsByFoodIdResponse {
   content: string;
   rating: number;
 }
+
+export interface CreateFoodRequest {
+  name: string;
+  description: string;
+  price: number;
+  image_url: string;
+  restaurant_id: string;
+}
+
+export interface UpdateFoodRequest {
+  name: string;
+  description: string;
+  price: number;
+  image_url: string;
+  restaurant_id: string;
+}
