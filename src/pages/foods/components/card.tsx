@@ -7,9 +7,10 @@ import { EditFoodButton } from './edit-food-modal';
 
 interface FoodCardProps {
   food: Food;
+  resutaurantId: string;
 }
 
-export default function FoodCard({ food }: FoodCardProps) {
+export default function FoodCard({ food, resutaurantId }: FoodCardProps) {
   const isAdmin = true;
 
   return (
@@ -39,7 +40,7 @@ export default function FoodCard({ food }: FoodCardProps) {
       {isAdmin && (
         <div className="flex gap-2 w-full">
           <EditFoodButton food={food} />
-          <DeleteFoodButton foodId={food.id} />
+          <DeleteFoodButton foodId={food.id} restaurantId={resutaurantId} />
         </div>
       )}
     </div>

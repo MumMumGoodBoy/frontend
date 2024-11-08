@@ -5,20 +5,26 @@ import { toast } from '@/hooks/use-toast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 
-export function DeleteFoodButton({ foodId }: { foodId: string }) {
+interface DeleteFoodButtonProps {
+  foodId: string;
+  restaurantId: string;
+}
+
+export function DeleteFoodButton({ foodId, restaurantId }: DeleteFoodButtonProps) {
   const [open, setOpen] = useState(false);
 
   const { mutate } = useMutation({
     mutationKey: ['deleteFood'],
     mutationFn: deleteFoodByFoodId,
-    onSuccess: () => {
+    onSuccess: async () => {
       toast({
         title: 'Delete food success',
-        variant: 'destructive',
       });
-      queryClient.invalidateQueries({
-        queryKey: ['foods'],
-      });
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ['foods'] }),
+        queryClient.invalidateQueries({ queryKey: ['restaurant', restaurantId] }),
+        queryClient.invalidateQueries({ queryKey: ['food', restaurantId] }),
+      ]);
     },
     onError: () => {
       toast({
@@ -32,6 +38,7 @@ export function DeleteFoodButton({ foodId }: { foodId: string }) {
 
   const handleDelete = () => {
     mutate(foodId);
+    setOpen(false);
   };
 
   return (

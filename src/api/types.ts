@@ -39,6 +39,7 @@ export interface Food {
   name: string;
   price: number;
   restaurant: string;
+  restaurant_id?: string;
 }
 
 export interface Restaurant {

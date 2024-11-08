@@ -20,7 +20,7 @@ const formSchema = z.object({
 
 export function EditFoodButton({ food }: { food: Food }) {
   const [open, setOpen] = useState(false);
-
+  const restaurantId = food.restaurant ?? food.restaurant_id;
   const {
     register,
     handleSubmit,
@@ -50,12 +50,16 @@ export function EditFoodButton({ food }: { food: Food }) {
   const { mutate } = useMutation({
     mutationKey: ['updateFood'],
     mutationFn: (data: UpdateFoodRequest) => updateFoodByFoodId(food.id, data),
-    onSuccess: () => {
+    onSuccess: async () => {
       toast({
         title: 'Update food success',
       });
       setOpen(false);
-      queryClient.invalidateQueries({ queryKey: ['foods'] });
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ['foods'] }),
+        queryClient.invalidateQueries({ queryKey: ['restaurant', restaurantId] }),
+        queryClient.invalidateQueries({ queryKey: ['food', restaurantId] }),
+      ]);
     },
     onError: () => {
       toast({
@@ -71,11 +75,10 @@ export function EditFoodButton({ food }: { food: Food }) {
       description: data.description,
       price: data.price,
       image_url: data.image_url,
-      restaurant_id: food.restaurant,
+      restaurant_id: restaurantId,
     });
   };
 
-  console.log('food', food);
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>

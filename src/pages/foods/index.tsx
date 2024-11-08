@@ -32,7 +32,6 @@ const Foods = () => {
           value={search}
           onChange={(val) => {
             setSearch(val as string);
-            console.log(search);
           }}
         />
         {/* In the Future, If available in search service*/}
@@ -47,7 +46,7 @@ const Foods = () => {
           {data?.hits.length === 0 ? (
             <Typography>No food found</Typography>
           ) : (
-            data?.hits.map((food) => <FoodCard key={food.id} food={food} />)
+            data?.hits.map((food) => <FoodCard key={food.id} food={food} resutaurantId={food.restaurant} />)
           )}
         </div>
       </div>

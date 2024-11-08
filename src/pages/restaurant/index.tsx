@@ -69,7 +69,7 @@ const Restaurant = () => {
 
           {foods?.foods.length !== 0 ? (
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {foods?.foods.map((food) => <FoodCard key={food.id} food={food} />)}
+              {foods?.foods.map((food) => <FoodCard key={food.id} food={food} resutaurantId={restaurantId || ''} />)}
             </div>
           ) : (
             <Typography className="w-full text-center">No food found</Typography>
