@@ -118,3 +118,10 @@ export interface UpdateRestaurantRequest {
   address: string;
   phone: string;
 }
+
+export interface AddFoodReviewRequest {
+  restaurant_id: string;
+  content: string;
+  rating: number;
+  food_id: string;
+}
