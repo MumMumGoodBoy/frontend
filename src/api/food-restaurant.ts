@@ -5,6 +5,7 @@ import {
   GetFoodsByRestaurantResponse,
   GetRestaurantResponse,
   UpdateFoodRequest,
+  UpdateRestaurantRequest,
 } from './types';
 
 export const getFoodByFoodId = async (foodId: string) => {
@@ -42,6 +43,18 @@ export const createFood = async (data: CreateFoodRequest) => {
 
 export const updateFoodByFoodId = async (foodId: string, data: UpdateFoodRequest) => {
   const response = await api.put('/food/' + foodId, data);
+
+  return response.data;
+};
+
+export const updateRestaurantByRestaurantId = async (restaurantId: string, data: UpdateRestaurantRequest) => {
+  const response = await api.put('/restaurant/' + restaurantId, data);
+
+  return response.data;
+};
+
+export const deleteRestaurantByRestaurantId = async (restaurantId: string) => {
+  const response = await api.delete('/restaurant/' + restaurantId);
 
   return response.data;
 };

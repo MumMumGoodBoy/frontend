@@ -3,6 +3,9 @@ import { Button } from '@/components/ui/button';
 import Typography from '@/components/ui/typography';
 import { useUser } from '@/providers/user';
 import { Link } from 'react-router-dom';
+import { EditRestaurantButton } from './edit-restaurant-modal';
+import { DeleteRestaurantButton } from './delete-restaurant-modal';
+// import { DeleteRestaurantButton } from './delete-food-modal';
 
 interface ResrtaurantCardProps {
   restaurant: Restaurant;
@@ -32,10 +35,8 @@ export default function ResrtaurantCard({ restaurant }: ResrtaurantCardProps) {
       </Link>
       {isAdmin && (
         <div className="flex gap-2 w-full">
-          <Button className="w-1/2" variant="secondary">
-            Edit
-          </Button>
-          <Button className="w-1/2">Delete</Button>
+          <EditRestaurantButton restaurant={restaurant} />
+          <DeleteRestaurantButton restaurantId={restaurant.id} />
         </div>
       )}
     </div>

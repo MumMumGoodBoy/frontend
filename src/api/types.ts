@@ -112,3 +112,9 @@ export interface UpdateFoodRequest {
   image_url: string;
   restaurant_id: string;
 }
+
+export interface UpdateRestaurantRequest {
+  name: string;
+  address: string;
+  phone: string;
+}
