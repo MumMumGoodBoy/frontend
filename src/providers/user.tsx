@@ -1,4 +1,4 @@
-import { type ReactNode, createContext, useContext, useMemo, useState } from 'react';
+import { type ReactNode, createContext, useContext, useMemo } from 'react';
 
 import { User } from '@/api/types';
 import { getMe } from '@/api/usm';

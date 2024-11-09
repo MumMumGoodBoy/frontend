@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import Typography from '@/components/ui/typography';
-
 import { searchRestaurant } from '@/api/search';
 import InputDebounce from '@/components/input-debounce';
 import { useQuery } from '@tanstack/react-query';

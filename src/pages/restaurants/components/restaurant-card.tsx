@@ -5,7 +5,6 @@ import { useUser } from '@/providers/user';
 import { Link } from 'react-router-dom';
 import { EditRestaurantButton } from './edit-restaurant-modal';
 import { DeleteRestaurantButton } from './delete-restaurant-modal';
-// import { DeleteRestaurantButton } from './delete-food-modal';
 
 interface ResrtaurantCardProps {
   restaurant: Restaurant;
