@@ -1,6 +1,7 @@
 import api from '@/lib/axios';
 import {
   CreateFoodRequest,
+  CreateRestaurantRequest,
   GetFoodResponse,
   GetFoodsByRestaurantResponse,
   GetRestaurantResponse,
@@ -43,6 +44,12 @@ export const createFood = async (data: CreateFoodRequest) => {
 
 export const updateFoodByFoodId = async (foodId: string, data: UpdateFoodRequest) => {
   const response = await api.put('/food/' + foodId, data);
+
+  return response.data;
+};
+
+export const createRestaurant = async (data: CreateRestaurantRequest) => {
+  const response = await api.post('/restaurant', data);
 
   return response.data;
 };

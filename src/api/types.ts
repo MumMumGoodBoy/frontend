@@ -105,6 +105,12 @@ export interface CreateFoodRequest {
   restaurant_id: string;
 }
 
+export interface CreateRestaurantRequest {
+  name: string;
+  address: string;
+  phone: string;
+}
+
 export interface UpdateFoodRequest {
   name: string;
   description: string;

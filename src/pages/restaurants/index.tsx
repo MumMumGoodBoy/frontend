@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import Typography from '@/components/ui/typography';
 import { searchRestaurant } from '@/api/search';
@@ -7,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import RestaurantCard from './components/restaurant-card';
 import { useUser } from '@/providers/user';
+import { CreateRestaurantButton } from './components/create-restaurant-modal';
 
 const Restaurants = () => {
   const user = useUser();
@@ -25,7 +25,7 @@ const Restaurants = () => {
           <Typography variant="h2" fontWeight="bold">
             Restaurants
           </Typography>
-          {isAdmin && <Button variant="outline">Create restaurant</Button>}
+          {isAdmin && <CreateRestaurantButton />}
         </div>
         <InputDebounce
           placeholder="Search restaurant"
