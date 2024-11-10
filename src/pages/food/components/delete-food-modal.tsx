@@ -45,7 +45,7 @@ export function DeleteReviewButton({ review }: ReviewCardProps) {
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Delete Food</DialogTitle>
+          <DialogTitle>Delete Review</DialogTitle>
         </DialogHeader>
         <Button onClick={onSubmit} variant="destructive">
           Delete
