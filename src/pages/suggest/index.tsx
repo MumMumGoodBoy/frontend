@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react';
 import PickCard, { EvaluateStatus } from './components/pick-card';
 import { useQuery } from '@tanstack/react-query';
-import { searchFood } from '@/api/search';
 import Typography from '@/components/ui/typography';
 import { Container } from '@/components/ui/container';
 import { useNavigate } from 'react-router-dom';
 import { Food } from '@/api/types';
+import { searchSuggestFood } from '@/api/suggest';
 
 function Suggest() {
   const { data } = useQuery({
     queryKey: ['foods'],
-    queryFn: () => searchFood(''),
+    queryFn: () => searchSuggestFood(),
   });
 
-  const [cardList, setCardList] = useState(data?.hits || []);
+  const [cardList, setCardList] = useState(data || []);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (data) {
-      setCardList(data.hits);
+      setCardList(data);
     }
   }, [data]);
 

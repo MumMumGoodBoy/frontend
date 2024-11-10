@@ -57,8 +57,22 @@ export interface SearchFoodResponse {
   query: string;
 }
 
+export interface SearchFoodResponse {
+  hits: Food[];
+  limit: number;
+  processingTimeMs: number;
+  query: string;
+}
+
 export interface SearchRestaurantResponse {
   hits: Restaurant[];
+  limit: number;
+  processingTimeMs: number;
+  query: string;
+}
+
+export interface SuggestFoodResponse {
+  hits: Food[];
   limit: number;
   processingTimeMs: number;
   query: string;
