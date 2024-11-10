@@ -95,7 +95,6 @@ const Food = () => {
         <Button variant="outline" className="w-fit" onClick={() => navigate(-1)}>
           Back
         </Button>
-
         <Typography variant="h2" fontWeight="bold">
           Food Detail
         </Typography>
