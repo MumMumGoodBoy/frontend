@@ -129,7 +129,7 @@ const Food = () => {
             <Typography variant="h5" fontWeight="bold">
               Write your review
             </Typography>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
               <Textarea placeholder="Write your review" {...register('review')} />
               <div className="flex justify-end gap-2">
                 <ReactStars

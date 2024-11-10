@@ -131,3 +131,7 @@ export interface AddFoodReviewRequest {
   rating: number;
   food_id: string;
 }
+
+export interface DeleteFoodReviewRequest {
+  review_id: string;
+}

@@ -1,5 +1,10 @@
 import api from '@/lib/axios';
-import { AddFoodReviewRequest, GetMyFavoritesResponse, GetReviewsByFoodIdResponse } from './types';
+import {
+  AddFoodReviewRequest,
+  DeleteFoodReviewRequest,
+  GetMyFavoritesResponse,
+  GetReviewsByFoodIdResponse,
+} from './types';
 
 export const GetReviewsByFoodId = async (foodId: string) => {
   const response = await api.get<GetReviewsByFoodIdResponse[]>('/food/' + foodId + '/reviews');
@@ -9,6 +14,12 @@ export const GetReviewsByFoodId = async (foodId: string) => {
 
 export const addReview = async (data: AddFoodReviewRequest) => {
   const response = await api.post('/review', data);
+
+  return response.data;
+};
+
+export const deleteReview = async (data: DeleteFoodReviewRequest) => {
+  const response = await api.delete('/review/' + data.review_id);
 
   return response.data;
 };

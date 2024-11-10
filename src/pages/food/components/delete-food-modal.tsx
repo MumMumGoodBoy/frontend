@@ -1,56 +1,53 @@
-import { deleteFoodByFoodId } from '@/api/food-restaurant';
+import { deleteReview } from '@/api/review';
+import { GetReviewsByFoodIdResponse } from '@/api/types';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { toast } from '@/hooks/use-toast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 
-interface DeleteFoodButtonProps {
-  foodId: string;
-  restaurantId: string;
+interface ReviewCardProps {
+  review: GetReviewsByFoodIdResponse;
 }
 
-export function DeleteFoodButton({ foodId, restaurantId }: DeleteFoodButtonProps) {
+export function DeleteReviewButton({ review }: ReviewCardProps) {
   const [open, setOpen] = useState(false);
 
+  const onSubmit = () => {
+    mutate({
+      review_id: review.review_id,
+    });
+    setOpen(false);
+  };
+  const queryClient = useQueryClient();
+
   const { mutate } = useMutation({
-    mutationKey: ['deleteFood'],
-    mutationFn: deleteFoodByFoodId,
-    onSuccess: async () => {
+    mutationKey: ['login'],
+    mutationFn: deleteReview,
+    onSuccess: () => {
       toast({
-        title: 'Delete food success',
+        title: 'Delete review successful',
       });
-      await Promise.all([
-        queryClient.invalidateQueries({ queryKey: ['foods'] }),
-        queryClient.invalidateQueries({ queryKey: ['restaurant', restaurantId] }),
-        queryClient.invalidateQueries({ queryKey: ['food', restaurantId] }),
-      ]);
+      queryClient.invalidateQueries({ queryKey: ['review', review.food_id] });
     },
     onError: () => {
       toast({
-        title: 'Delete food failed',
         variant: 'destructive',
+        title: 'Delete review failed',
       });
     },
   });
 
-  const queryClient = useQueryClient();
-
-  const handleDelete = () => {
-    mutate(foodId);
-    setOpen(false);
-  };
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="w-1/2">Delete</Button>
+        <Button>Delete</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Delete Food</DialogTitle>
         </DialogHeader>
-        <Button onClick={handleDelete} variant="destructive">
+        <Button onClick={onSubmit} variant="destructive">
           Delete
         </Button>
         <Button variant="outline" onClick={() => setOpen(false)}>
