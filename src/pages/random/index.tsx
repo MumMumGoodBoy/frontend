@@ -1,4 +1,4 @@
-import { searchFood } from '@/api/search';
+import { searchSuggestFood } from '@/api/suggest';
 import { Food } from '@/api/types';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
@@ -14,13 +14,13 @@ const Random = () => {
 
   const { data: queryData } = useQuery({
     queryKey: ['foods', 'random'],
-    queryFn: () => searchFood('', '10'),
+    queryFn: () => searchSuggestFood(),
   });
 
   if (!queryData) return null;
 
   const foodOptions =
-    queryData?.hits.map((food: Food) => ({
+    queryData?.map((food: Food) => ({
       option: food.name,
     })) || [];
 
@@ -41,7 +41,7 @@ const Random = () => {
             <Typography variant="h4">
               Random: <span className="underline">{foodOptions[prizeNumber].option}</span>
             </Typography>
-            <Link to={`/food/${queryData?.hits[prizeNumber].id}`}>
+            <Link to={`/food/${queryData?.[prizeNumber].id}`}>
               <Button variant="outline">Get Detail</Button>
             </Link>
           </>
