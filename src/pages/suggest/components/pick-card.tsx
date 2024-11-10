@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import ProgressMask from './progress-mask';
-import { cn } from '@/lib/utils';
 import { Food } from '@/api/types';
 import Typography from '@/components/ui/typography';
+import { cn } from '@/lib/utils';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import ProgressMask from './progress-mask';
 
 interface InteractionStart {
   x: number;
@@ -30,7 +30,7 @@ const getPosition = (event: MouseEvent | TouchEvent | React.MouseEvent | React.T
 function PickCard({ cardList = [], onEvaluate }: Props) {
   const interactionRef = useRef<InteractionStart>();
   const [isInteracting, setIsInteracting] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(cardList.length - 1);
+  const [activeIndex] = useState(cardList.length - 1);
   const [progress, setProgress] = useState(0);
 
   const handleStart = useCallback((e: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>) => {
