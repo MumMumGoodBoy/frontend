@@ -9,10 +9,12 @@ import { getMyFavorites } from '@/api/review';
 
 const Foods = () => {
   const [search, setSearch] = useState<string>('');
+  const [minPrice, setMinPrice] = useState<number | undefined>(undefined);
+  const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
 
   const { data: searchResults, isLoading } = useQuery({
-    queryKey: ['foods', search],
-    queryFn: () => searchFood(search),
+    queryKey: ['foods', search, minPrice, maxPrice],
+    queryFn: () => searchFood(search, undefined, minPrice, maxPrice),
   });
 
   const { data: myFavoritesData } = useQuery({
@@ -45,6 +47,27 @@ const Foods = () => {
           value={search}
           onChange={(val) => setSearch(val as string)}
         />
+        <div className="flex flex-row gap-2">
+          <InputDebounce
+            placeholder="min price"
+            className="w-full"
+            value={minPrice}
+            onChange={(val) => {
+              setMinPrice(val as number);
+            }}
+            type="number"
+          />
+          <InputDebounce
+            placeholder="max price"
+            className="w-full"
+            value={maxPrice}
+            onChange={(val) => {
+              setMaxPrice(val as number);
+            }}
+            type="number"
+          />
+        </div>
+
         {isLoading ? (
           <div className="flex items-center justify-center h-full w-full">
             <Typography variant="h1" className="text-slate-600">
