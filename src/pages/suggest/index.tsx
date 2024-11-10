@@ -1,58 +1,55 @@
-import { Button } from '@/components/ui/button';
-import ImageCarousel from '@/components/ui/carousel';
-import { Container } from '@/components/ui/container';
+import { useEffect, useState } from 'react';
+import PickCard, { EvaluateStatus } from './components/pick-card';
+import { useQuery } from '@tanstack/react-query';
+import { searchFood } from '@/api/search';
 import Typography from '@/components/ui/typography';
-import { Check } from 'lucide-react';
+import { Container } from '@/components/ui/container';
+import { useNavigate } from 'react-router-dom';
+import { Food } from '@/api/types';
 
-const items = [
-  {
-    id: 1,
-    title: 'Item 1',
-    image:
-      'https://plus.unsplash.com/premium_photo-1718204436526-277f9f34607c?q=80&w=1818&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 2,
-    title: 'Item 2',
-    image:
-      'https://images.unsplash.com/photo-1718717722247-26f4c6c09192?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8',
-  },
-  {
-    id: 3,
-    title: 'Item 3',
-    image:
-      'https://plus.unsplash.com/premium_photo-1718570262641-54c3ea3142e9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 4,
-    title: 'Item 4',
-    image:
-      'https://images.unsplash.com/photo-1718524767488-10ee93e05e9c?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 5,
-    title: 'Item 4',
-    image:
-      'https://images.unsplash.com/photo-1718524767488-10ee93e05e9c?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-];
+function Suggest() {
+  const { data } = useQuery({
+    queryKey: ['foods'],
+    queryFn: () => searchFood(''),
+  });
 
-const Suggest = () => {
+  const [cardList, setCardList] = useState(data?.hits || []);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (data) {
+      setCardList(data.hits);
+    }
+  }, [data]);
+
+  if (!data) {
+    return (
+      <div className="flex items-center justify-center h-full w-full">
+        <Typography variant="h1" className="text-slate-600">
+          Loading... 🥗🥐
+        </Typography>
+      </div>
+    );
+  }
+
   return (
     <Container className="py-10 w-full">
       <div className="flex flex-col gap-4 w-full">
         <Typography variant="h2" fontWeight="bold">
-          Suggestion
+          Suggest
         </Typography>
-        <div className="flex justify-center">
-          <ImageCarousel items={items} />
-        </div>
-        <Button variant="ghost" className="rounded-full w-fit self-center">
-          <Check className="text-green-700" />
-        </Button>
+        <PickCard
+          cardList={cardList || []}
+          onEvaluate={(card: Food, status: EvaluateStatus) => {
+            setCardList((prev) => prev.filter((c) => c.id !== card.id));
+            if (status === 'good') {
+              navigate(`/food/${card.id}`);
+            }
+          }}
+        />
       </div>
     </Container>
   );
-};
+}
 
 export default Suggest;

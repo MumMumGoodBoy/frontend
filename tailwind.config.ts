@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
-const { join } = require('path');
+import { join } from 'path';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -120,6 +120,9 @@ export default {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
+        good: '#00bfa5',
+        bad: '#f44336',
+        grayLight: '#e6e6e6', // for default stroke color
       },
     },
   },
