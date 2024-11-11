@@ -61,21 +61,6 @@ const Random = () => {
         )}
       </div>
       <div className="flex flex-col gap-4 items-center">
-{/*         <Wheel
-          mustStartSpinning={mustSpin}
-          prizeNumber={prizeNumber}
-          data={foodOptions}
-          onStopSpinning={() => {
-            setMustSpin(false);
-          }}
-          backgroundColors={["darkgray",
-            "lightgray"]}
-          innerBorderWidth={2}
-          outerBorderWidth={1}
-          fontFamily="IBM Plex Sans"
-          fontWeight={500}
-          fontSize={16}
-        /> */}
         <Wheel
           mustStartSpinning={mustSpin}
           prizeNumber={prizeNumber}
