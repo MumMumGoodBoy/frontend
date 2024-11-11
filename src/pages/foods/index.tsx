@@ -1,11 +1,11 @@
+import { getMyFavorites } from '@/api/review';
 import { searchFood } from '@/api/search';
 import InputDebounce from '@/components/input-debounce';
 import { Container } from '@/components/ui/container';
 import Typography from '@/components/ui/typography';
 import { useQuery } from '@tanstack/react-query';
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import FoodCard from './components/card';
-import { getMyFavorites } from '@/api/review';
 
 const Foods = () => {
   const [search, setSearch] = useState<string>('');
@@ -23,15 +23,6 @@ const Foods = () => {
   });
 
   const myFavorites = myFavoritesData?.foods || [];
-
-  const combinedFoods = useMemo(() => {
-    if (!searchResults?.hits) return myFavorites;
-
-    const favoritesIds = new Set(myFavorites.map((fav) => fav.id));
-    const nonFavoriteSearchResults = searchResults.hits.filter((food) => !favoritesIds.has(food.id));
-
-    return [...myFavorites, ...nonFavoriteSearchResults];
-  }, [myFavorites, searchResults]);
 
   return (
     <Container className="py-10 w-full">
@@ -74,7 +65,7 @@ const Foods = () => {
               Loading... 🥗🥐
             </Typography>
           </div>
-        ) : combinedFoods.length === 0 ? (
+        ) : searchResults?.hits.length === 0 ? (
           <div className="flex items-center justify-center h-full w-full">
             <Typography variant="h1" className="text-slate-600">
               No Foods Found 🥗🥐
@@ -82,7 +73,7 @@ const Foods = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {combinedFoods.map((food) => (
+            {searchResults?.hits.map((food) => (
               <FoodCard
                 key={food.id}
                 food={food}
