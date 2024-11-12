@@ -34,9 +34,14 @@ function Suggest() {
 
   return (
     <Container className="py-10 w-full">
-      <div className="flex flex-col gap-4 w-full">
+      <div className="flex flex-col gap-4 w-full items-center">
         <Typography variant="h2" fontWeight="bold">
-          Suggest
+          Get Your Perfect Meal Suggestion!
+        </Typography>
+        <Typography variant="body1" className="text-gray-600 text-center max-w-md">
+          <strong className="text-lg">Swipe right</strong> to learn more about a suggested meal, or <br />
+          <strong className="text-lg">Swipe left</strong> to see other options. Ready to discover something delicious?
+          Let’s get started!
         </Typography>
         {cardList.length === 0 && (
           <div className="flex justify-center h-full w-full">
