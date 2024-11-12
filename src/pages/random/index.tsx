@@ -8,6 +8,13 @@ import { useState } from 'react';
 import { Wheel } from 'react-custom-roulette';
 import { Link } from 'react-router-dom';
 
+function formatFoodName(name: string, maxLength: number = 15): string {
+  if (name.length > maxLength) {
+    return name.slice(0, maxLength) + '…';
+  }
+  return name;
+}
+
 const Random = () => {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(-1);
@@ -23,6 +30,10 @@ const Random = () => {
     queryData?.map((food: Food) => ({
       option: food.name,
     })) || [];
+  
+  const foodData = foodOptions.map((food) => ({
+    option: formatFoodName(food.option),
+  }));
 
   const handleSpinClick = () => {
     const newPrizeNumber = Math.floor(Math.random() * foodOptions.length);
@@ -42,7 +53,7 @@ const Random = () => {
               Random: <span className="underline">{foodOptions[prizeNumber].option}</span>
             </Typography>
             <Link to={`/food/${queryData?.[prizeNumber].id}`}>
-              <Button variant="outline">Get Detail</Button>
+              <Button variant="outline" className='mt-4'>Get Detail</Button>
             </Link>
           </>
         ) : (
@@ -53,16 +64,27 @@ const Random = () => {
         <Wheel
           mustStartSpinning={mustSpin}
           prizeNumber={prizeNumber}
-          data={foodOptions}
+          data={foodData}
           onStopSpinning={() => {
             setMustSpin(false);
           }}
-          backgroundColors={[]}
+          spinDuration={0.3}
+          backgroundColors={[    
+            '#a86eff', // Purple
+            '#42a4ff', // Light Blue
+            '#4ef2e5', // Sea
+            '#A8E80C', // Green
+            '#FFDD44', // Yellow
+            '#FF7F00', // Orange
+            '#FF3F8E', // Pink
+            '#ff4a4a'  // Red
+            ]}
           innerBorderWidth={2}
           outerBorderWidth={2}
+          radiusLineWidth={1}
           fontFamily="IBM Plex Sans"
           fontWeight={500}
-          fontSize={20}
+          fontSize={16}
         />
         <Button onClick={handleSpinClick} size="lg" disabled={mustSpin}>
           Spin
