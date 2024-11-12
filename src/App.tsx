@@ -42,7 +42,6 @@ function App() {
         <Route path="/account" element={<Profile />} />
         <Route path="/favourite" element={<Favourite />} />
       </Route>
-
       <Route path="*" element={<NotFound />} />
       {/* Define route */}
     </Routes>
