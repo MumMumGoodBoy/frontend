@@ -38,6 +38,13 @@ function Suggest() {
         <Typography variant="h2" fontWeight="bold">
           Suggest
         </Typography>
+        {cardList.length === 0 && (
+          <div className="flex justify-center h-full w-full">
+            <Typography variant="h1" className="text-slate-600">
+              No more food to suggest 🥗🥐
+            </Typography>
+          </div>
+        )}
         <PickCard
           cardList={cardList || []}
           onEvaluate={(card: Food, status: EvaluateStatus) => {

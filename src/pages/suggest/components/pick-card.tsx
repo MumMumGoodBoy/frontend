@@ -135,7 +135,7 @@ function PickCard({ cardList = [], onEvaluate }: Props) {
 
   return (
     <>
-      <div className="relative flex flex-col w-full h-full mx-auto z-10 max-w-[600px] max-h-[900px] touch-none">
+      <div className="relative flex flex-col w-full h-full z-10 max-w-[600px] max-h-[900px] touch-none">
         {cardList.map((card, index) => {
           const isActiveCard = index >= activeIndex;
           const isLastCard = index === cardList.length - 1;
@@ -153,7 +153,7 @@ function PickCard({ cardList = [], onEvaluate }: Props) {
                 onMouseDown: handleStart,
               })}
             >
-              <div className="flex flex-col h-full overflow-hidden bg-white rounded-lg transform translate-y-5 scale-95 transition-shadow duration-300 gap-4 shadow-sm">
+              <div className="flex flex-col h-full overflow-hidden bg-white rounded-lg transform translate-y-5 scale-95 transition-shadow duration-300 gap-4">
                 <div className="flex-2 relative w-full h-full max-h-[80%]">
                   <img src={card.image_url} alt={card.name} className="object-cover w-full h-full" />
                 </div>
